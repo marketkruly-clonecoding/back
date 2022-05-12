@@ -8,9 +8,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class User {
-    private int userIdx;
-    private String ID;
-    private String userName;
-    private String password;
+    private int user_idx;
+    private String id;
+    private String pwd;
+    private String name;
     private String email;
+    private String phone;
+    private String sex;
+    private String birth;
+    private String address_desc;
 }

@@ -51,16 +51,16 @@ public class UserProvider {
 //    }
 
     public PostLoginRes logIn(PostLoginReq postLoginReq) throws BaseException{
-        User user = userDao.getPwd(postLoginReq);
+        User user = userMapper.get_pwd(postLoginReq);
         String encryptPwd;
         try {
-            encryptPwd=new SHA256().encrypt(postLoginReq.getPassword());
+            encryptPwd=new SHA256().encrypt(postLoginReq.getPwd());
         } catch (Exception ignored) {
             throw new BaseException(PASSWORD_DECRYPTION_ERROR);
         }
 
-        if(user.getPassword().equals(encryptPwd)){
-            int userIdx = user.getUserIdx();
+        if(user.getPwd().equals(encryptPwd)){
+            int userIdx = user.getUser_idx();
             String jwt = jwtService.createJwt(userIdx);
             return new PostLoginRes(userIdx,jwt);
         }
