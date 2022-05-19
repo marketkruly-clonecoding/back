@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import static com.example.marketkurly_clone.config.BaseResponseStatus.*;
 
 //Provider : Read의 비즈니스 로직 처리
@@ -62,7 +60,7 @@ public class UserProvider {
         if(user.getPwd().equals(encryptPwd)){
             int userIdx = user.getUser_idx();
             String jwt = jwtService.createJwt(userIdx);
-            return new PostLoginRes(userIdx,jwt);
+            return new PostLoginRes(userIdx,user.getName(),jwt);
         }
         else{
             throw new BaseException(FAILED_TO_LOGIN);
@@ -70,4 +68,17 @@ public class UserProvider {
 
     }
 
+    public void checkUserPhone(GetCheckUserInfoReq getCheckUserInfoReq) throws BaseException {
+        try{
+            int res = userMapper.checkPhone(getCheckUserInfoReq);
+            System.out.println(res);
+            if (res == 1 ){
+                throw new BaseException(PASSWORD_DECRYPTION_ERROR);
+            }
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+
+
+    }
 }

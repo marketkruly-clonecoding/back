@@ -1,9 +1,10 @@
 package com.example.marketkurly_clone.src.user;
 
 
-
 import com.example.marketkurly_clone.config.BaseException;
-import com.example.marketkurly_clone.src.user.model.*;
+import com.example.marketkurly_clone.src.user.model.PatchUserReq;
+import com.example.marketkurly_clone.src.user.model.PostUserReq;
+import com.example.marketkurly_clone.src.user.model.PostUserRes;
 import com.example.marketkurly_clone.utils.JwtService;
 import com.example.marketkurly_clone.utils.SHA256;
 import org.slf4j.Logger;

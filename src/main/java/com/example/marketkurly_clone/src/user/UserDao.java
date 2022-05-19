@@ -1,13 +1,14 @@
 package com.example.marketkurly_clone.src.user;
 
 
-import com.example.marketkurly_clone.src.user.model.*;
+import com.example.marketkurly_clone.src.user.model.PatchUserReq;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.apache.ibatis.session.SqlSession;
+
 import javax.sql.DataSource;
-import java.util.List;
+
 /*
 * 해당 다오는 이대로 둘 예정 하지만 사용은 되도록이면 안하고 mapper 구조로 진행할 예정
 *

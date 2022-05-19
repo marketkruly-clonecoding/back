@@ -1,19 +1,15 @@
 package com.example.marketkurly_clone.src.user;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.example.marketkurly_clone.config.BaseException;
 import com.example.marketkurly_clone.config.BaseResponse;
 import com.example.marketkurly_clone.src.user.model.*;
 import com.example.marketkurly_clone.utils.JwtService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-
-import static com.example.marketkurly_clone.config.BaseResponseStatus.*;
-import static com.example.marketkurly_clone.utils.ValidationRegex.isRegexEmail;
+import static com.example.marketkurly_clone.config.BaseResponseStatus.INVALID_USER_JWT;
 
 @RestController
 @RequestMapping("/app/users")
@@ -145,6 +141,26 @@ public class UserController {
             String result = "";
         return new BaseResponse<>(result);
         } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+
+    /**
+     * 휴대폰
+     *
+     *
+     */
+    @ResponseBody
+    @GetMapping("/join/check")
+    public BaseResponse<String> checkUserPhone(@RequestBody GetCheckUserInfoReq getCheckUserInfoReq){
+        try{
+            userProvider.checkUserPhone(getCheckUserInfoReq);
+            String result = "사용가능";
+            return new BaseResponse<>(result);
+        }
+
+        catch (BaseException exception) {
             return new BaseResponse<>((exception.getStatus()));
         }
     }
